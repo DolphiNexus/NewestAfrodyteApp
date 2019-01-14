@@ -1,0 +1,8 @@
+{
+  "name": "AfrodyteApp",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular",
+  "id": "e1abb5f5"
+}
