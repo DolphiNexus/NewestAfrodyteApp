@@ -2,6 +2,7 @@ page-home {
     .card-container {
         height: 90vw;
         width: 90vw;
+        
     }
     .user_img {
         display: block;
@@ -10,5 +11,10 @@ page-home {
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
+        border-style: solid;
+        border-width: 10px;
+        border-style: solid;
+        border-color: #FF6961;
+        border-radius: 20px;
     }
 }

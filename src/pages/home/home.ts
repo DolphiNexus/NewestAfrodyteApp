@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 
+import { ClosetPage } from './../closet/closet';
 
 @Component({
   selector: 'page-home',
@@ -62,5 +63,9 @@ takePhoto(){
        // Handle error
       });
 }
+
+switchToCloset() {
+    this.navCtrl.push(ClosetPage);
+    }
 
 }

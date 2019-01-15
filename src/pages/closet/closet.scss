@@ -1,0 +1,38 @@
+h2 {
+    color:#FF6961;
+    width: 100%; 
+    text-align: center; 
+    border-bottom: 2px solid #FF6961; 
+    line-height: 0.1em;
+    margin: 20px 0 20px; 
+ } 
+ 
+ h2 span { 
+     background:#fff; 
+     padding:0 10px; 
+ }
+
+img {
+    max-width: 30%;
+    margin-right: 20px;
+    border-width: 5px;
+    border-color: #FF6961;
+    border-radius: 20px;
+}
+
+div.scrollCloset {
+    overflow: auto;
+    white-space: nowrap;
+}
+  
+div.scrollCloset a {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px;
+    text-decoration: none;
+}
+
+::-webkit-scrollbar { 
+    display: none; 
+}
