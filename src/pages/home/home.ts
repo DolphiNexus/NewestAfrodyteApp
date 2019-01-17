@@ -1,7 +1,9 @@
+import { FIREBASE_CONFIG } from './../../app/firebase.config';
 import { Component, EventEmitter } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Camera, CameraOptions } from '@ionic-native/camera';
+import { storage, initializeApp } from 'firebase';
 
 import { ClosetPage } from './../closet/closet';
 
@@ -31,6 +33,9 @@ myphoto:any;
   ]
 
   constructor(public navCtrl: NavController, private sanitizer: DomSanitizer, private camera: Camera) {
+
+    initializeApp(FIREBASE_CONFIG)
+
     for (let i = 0; i < this.images.length; i++) {
       this.attendants.push({
           id: i + 1,
@@ -47,21 +52,28 @@ onCardInteract(event) {
 console.log(event);
   }
 
-takePhoto(){
+async takePhoto(){
+    try {
     const options: CameraOptions = {
         quality: 70,
-        destinationType: this.camera.DestinationType.FILE_URI,
+        targetHeight: 600,
+        targetWidth: 600,
+        destinationType: this.camera.DestinationType.DATA_URL,
         encodingType: this.camera.EncodingType.JPEG,
-        mediaType: this.camera.MediaType.PICTURE
+        mediaType: this.camera.MediaType.PICTURE,
+        correctOrientation: true,
       }
       
-      this.camera.getPicture(options).then((imageData) => {
-       // imageData is either a base64 encoded string or a file URI
-       // If it's base64 (DATA_URL):
-        this.myphoto = 'data:image/jpeg;base64,' + imageData;
-      }, (err) => {
-       // Handle error
-      });
+      const result = await this.camera.getPicture(options);
+
+      const image = `data:image/jpeg;base64,${result}`;
+
+      const pictures = storage().ref('pictures/myClothes');
+      pictures.putString(image, 'data_url');
+    }
+    catch (e) {
+        console.error(e);
+    }
 }
 
 switchToCloset() {
